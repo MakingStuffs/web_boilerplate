@@ -3,3 +3,4 @@
 exclude.lst
 *.cert
 *.key
+*.DS_Store
