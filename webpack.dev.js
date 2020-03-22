@@ -4,15 +4,15 @@ const common = require('./webpack.common');
 const webpack = require('webpack')
 const postCssPresetEnv = require('postcss-preset-env');
 const ExtractCssChunksPlugin = require('extract-css-chunks-webpack-plugin');
-
+const path = require('path');
 
 module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     entry: [
-        './src/assets/js/main.js',
         'webpack-hot-middleware/client',
-        '@babel/polyfill'
+        '@babel/polyfill',
+        './src/assets/js/main.js'
     ],
     module: {
         rules: [{
@@ -73,28 +73,52 @@ module.exports = merge(common, {
                 ]
             },
             {
-                test: /\.ejs$/,
-                use :['ejs-compiled-loader']
-            },
-            {
                 test: /(\.ce\.scss)$/,
                 use :[
                     'css-loader',
                     {
                         loader: 'postcss-loader',
                         options: {
-                            plugins: () => [ postcssPresetEnv() ],
+                            plugins: () => [ postCssPresetEnv() ],
                             sourceMap: 'inline'
                         }
                     },
                     'sass-loader'
+                ]
+            },
+            {
+                test: /\.ico$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            publicPath: path.resolve(__dirname, '/'),
+                            outputPath: '',
+                            name: '[name].[ext]',
+                            esModule: false
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(jpg|png|jpeg|svg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            publicPath: path.resolve(__dirname, '/assets/img/'),
+                            outputPath: 'assets/img',
+                            name: '[name].[hash].[ext]',
+                            esModule: false
+                        }
+                    }
                 ]
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/views/pages/index.ejs',
+            template: '!!ejs-webpack-loader!src/views/pages/index.ejs',
             filename: 'index.html'
         }),
         new ExtractCssChunksPlugin({
