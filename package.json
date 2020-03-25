@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node server/dev.js",
     "prod": "rm -rf dist && webpack --config webpack.prod.js",
-    "zip": "rm -rf dist.zip && zip -r dist.zip dist -x exclude.lst"
+    "zip": "rm -rf dist.zip && zip -r dist.zip dist -x exclude.lst",
+    "ssl": "openssl req -x509 -newkey rsa:2048 -keyout key.key -out cert.cert -days 365"
   },
   "repository": {
     "type": "git",
