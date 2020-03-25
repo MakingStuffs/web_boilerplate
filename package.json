@@ -1,6 +1,6 @@
 {
   "name": "making-stuffs-boilerplate",
-  "version": "0.0.01a",
+  "version": "0.0.1",
   "description": "A boilerplate for webpack with a coming soon page",
   "main": ".eslint.js",
   "scripts": {
