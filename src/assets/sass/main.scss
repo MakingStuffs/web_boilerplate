@@ -1,5 +1,13 @@
+@import './partials/fonts';
+@import './partials/colors';
+@import './partials/atomic';
+@import './partials/mediaQueries';
 @import './partials/normalize/import-now';
 
 * {
     box-sizing: border-box;
+}
+
+html {
+    font-family: 'Making Stuffs';
 }

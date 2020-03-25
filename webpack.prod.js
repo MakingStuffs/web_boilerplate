@@ -1,3 +1,5 @@
+
+require('dotenv').config({path: './.env'});
 const merge = require('webpack-merge');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -80,7 +82,7 @@ module.exports = merge(common, {
                 loaders: [{
                         loader: 'file-loader',
                         options: {
-                            publicPath: 'https://laares.co.uk/assets/img/',
+                            publicPath: `${process.env.DOMAIN}/assets/img/`,
                             outputPath: 'assets/img/',
                             filename: '[name].[hash].[ext]',
                             esModule: false
@@ -109,7 +111,7 @@ module.exports = merge(common, {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: 'https://laares.co.uk/',
+        publicPath: process.env.DOMAIN,
         filename: 'assets/js/[name].[hash].js'
     },
     plugins: [

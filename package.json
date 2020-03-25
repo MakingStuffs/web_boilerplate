@@ -1,7 +1,7 @@
 {
-  "name": "Laares",
+  "name": "making-stuffs-boilerplate",
   "version": "0.0.01a",
-  "description": "",
+  "description": "A boilerplate for webpack with a coming soon page",
   "main": ".eslint.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,9 +9,21 @@
     "prod": "rm -rf dist && webpack --config webpack.prod.js",
     "zip": "rm -rf dist.zip && zip -r dist.zip dist -x exclude.lst"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:MakingStuffs/web_boilerplate.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "webpack",
+    "sass",
+    "custom element",
+    "eslint",
+    "ejs",
+    "express"
+  ],
+  "author": "Paul Singh",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "@babel/plugin-transform-classes": "^7.8.6",
@@ -25,7 +37,6 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
-    "compile-ejs-loader": "0.0.2",
     "css-loader": "^3.4.2",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
@@ -55,6 +66,5 @@
     "last 2 versions",
     "> 0.2%",
     "not dead"
-  ],
-  "dependencies": {}
+  ]
 }

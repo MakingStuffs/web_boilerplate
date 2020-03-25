@@ -1,3 +1,4 @@
+require('dotenv').config({path: './.env'});
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common');
@@ -101,7 +102,7 @@ module.exports = merge(common, {
                 ]
             },
             {
-                test: /\.(jpg|png|jpeg|svg)$/,
+                test: /\.(jpg|png|jpeg|svg|webp)$/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -113,13 +114,28 @@ module.exports = merge(common, {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(woff|woff2)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            publicPath: path.resolve(__dirname, '/assets/fonts/'),
+                            outputPath: 'assets/fonts',
+                            name: '[name].[hash].[ext]',
+                            esModule: false
+                        }
+                    }
+                ]
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: '!!ejs-webpack-loader!src/views/pages/index.ejs',
-            filename: 'index.html'
+            template: 'ejs-webpack-loader!src/views/pages/index.ejs',
+            filename: 'index.html',
+            domain: process.env.DOMAIN
         }),
         new ExtractCssChunksPlugin({
             filename: 'assets/css/[name].css',
