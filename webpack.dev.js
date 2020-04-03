@@ -142,7 +142,7 @@ module.exports = merge(common, {
         }),
         new BrowserSyncPlugin({
             files: '**/*.ejs',
-            proxy: `https://localchost:${process.env.PORT}`
+            proxy: `https://localhost:${process.env.PORT}`
         })
     ]
 });
