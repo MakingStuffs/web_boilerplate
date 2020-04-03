@@ -2,16 +2,15 @@ require('dotenv').config({path: './.env'});
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common');
-const webpack = require('webpack');
 const postCssPresetEnv = require('postcss-preset-env');
 const ExtractCssChunksPlugin = require('extract-css-chunks-webpack-plugin');
 const path = require('path');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     entry: [
-        'webpack-hot-middleware/client',
         '@babel/polyfill',
         './src/assets/js/main.js'
     ],
@@ -141,6 +140,9 @@ module.exports = merge(common, {
             filename: 'assets/css/[name].css',
             chunkFilename: 'assets/css/[id].css'
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new BrowserSyncPlugin({
+            files: '**/*.ejs',
+            proxy: `https://localchost:${process.env.PORT}`
+        })
     ]
 });
