@@ -1,7 +1,6 @@
 require('dotenv').config({path: './.env'});
 const express = require('express');
 const app = express();
-const WebpackHotMiddleware = require('webpack-hot-middleware');
 const WebpackDevMiddleware = require('webpack-dev-middleware');
 const https = require('https');
 const fs = require('fs');
@@ -26,7 +25,5 @@ app.use(helmet());
 app.use(WebpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath
 }));
-
-app.use(WebpackHotMiddleware(compiler));
 
 const listener = secureServer.listen(PORT, () => console.log(`Connected on ${listener.address().port}`));
